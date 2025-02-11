@@ -59,8 +59,9 @@ export const saveAppointment = async (req, res) => {
 
 export const getAppointments = async (req, res) => {
   try {
-    const query = { status: "CREATED"};
+    const {idAppoinments} = req.params
     const { limite = 5, desde = 0 } = req.query;
+    const query = await Appointment.findByIdAndUpdate({user: idAppoinments, status: "CREATED"});
 
     const [total, appointments] = await Promise.all([
       Appointment.countDocuments(query),
@@ -105,5 +106,23 @@ export const updateAppointments = async (req, res) => {
         }
 }
 
+export const cancelAppointments = async (req, res) => { 
+    try{
+        const { eid } = req.params
+        const appointment = await Appointment.findByIdAndUpdate(eid, {status: "CANCELLED"}, {new: true});
 
+        return res.status(200).json({
+            success: true,
+            message: "Cita cancelada exitosamente",
+            appointment
+        })
+
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: "Error al cancelar la cita",
+            error: err.message
+        })
+    }
+}
 
