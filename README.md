@@ -121,21 +121,24 @@ JWT_SECRET=<tu_secreto_jwt>
     }
     ```
 
-## Funcionalidades Adicionales
+ **Listar Citas**
+  - **URL:** `/adoptionSystem/v1/appointment/getAppointments`
+  - **Método:** `GET`
 
-Las siguientes funcionalidades necesitan ser desarrolladas:
+ **Actualizar Cita**
+  - **URL:** `/adoptionSystem/v1/appointment/updateAppointment/:eid`
+  - **Método:** `PATCH`
+  - **Cuerpo:**
+    ```json
+      {
+      "date": "2023-10-21T10:00:00Z"
+      }
+    ```
 
-1. **Actualizar Foto del Usuario**
-   - Descripción: Implementar funcionalidad para actualizar la foto de perfil del usuario.
+ **Cancelar Cita**
+  - **URL:** `/adoptionSystem/v1/appointment/cancelAppointment/:eid`
+  - **Método:** `PATCH`
 
-2. **Listar Citas**
-   - Descripción: Implementar funcionalidad para listar todas las citas de un usuario.
-
-3. **Actualizar Cita**
-   - Descripción: Implementar funcionalidad para actualizar una cita existente.
-
-4. **Cancelar Cita**
-   - Descripción: Implementar funcionalidad para cancelar una cita existente.
-
-5. **Entrega**
-   - Funcionalidades deben ser parte del código fuente y ser entregadas en tiempo y forma indicada en clase.
+ **Actualizar Foto del Usuario**
+  - **URL:** `/adoptionSystem/v1/user/updateProfilePicture/:uid`
+  - **Método:** `PATCH`
