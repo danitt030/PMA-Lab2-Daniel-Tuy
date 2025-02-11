@@ -83,4 +83,27 @@ export const getAppointments = async (req, res) => {
   }
 }
 
+export const updateAppointments = async (req, res) => {
+        try{
+          const { eid } = req.params
+          const datos = req.body
+          const appointment = await Appointment.findByIdAndUpdate(eid, datos, {new: true});
+
+
+            return res.status(200).json({
+                success: true,
+                message: "La cita ha sido actualizada",
+                appointment
+            })
+
+        }catch(err){
+            return res.status(500).json({
+                success: false,
+                message: "Error al actualizar la cita",
+                error: err.message
+            })
+        }
+}
+
+
 
